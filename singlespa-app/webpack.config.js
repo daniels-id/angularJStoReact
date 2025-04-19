@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -31,6 +32,11 @@ module.exports = {
       inject: false, // Let SystemJS handle script loading
       scriptLoading: 'system', // Ensure compatibility with SystemJS
     }),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: 'src/favicon.ico', to: 'favicon.ico' }
+      ]
+    })
   ],
   devServer: {
     static: path.join(__dirname, 'dist'),
@@ -42,6 +48,6 @@ module.exports = {
     },
   },
   // Exclude dependencies that will be loaded via SystemJS import map
-  externals: ['single-spa', 'react', 'react-dom', 'angular'], // Adjusted externals slightly
+  externals: ['react', 'react-dom', 'angular'],
   mode: 'development', 
 }; 

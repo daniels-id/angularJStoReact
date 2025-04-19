@@ -11,16 +11,16 @@ registerApplication(
   // Our loading function
   () => System.import("@singlespa-app/angularjs-app"),
   // Our activity function
-  (location) => location.pathname.startsWith('/angularjs')
+  (location) => true // Always active
 );
 
 registerApplication(
   "@singlespa-app/react-app",
   () => System.import("@singlespa-app/react-app"),
-  (location) => location.pathname.startsWith('/react')
+  (location) => true // Always active
 );
 
-console.log("single-spa root config: Applications registered.");
+console.log("single-spa root config: Applications registered (always active).");
 
 // Start single-spa
 start({
