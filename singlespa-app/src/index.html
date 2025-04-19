@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Single-SPA Root Config</title>
+
+    <!-- Add SystemJS and Import Map -->
+    <script src="https://cdn.jsdelivr.net/npm/systemjs@6.14.3/dist/system.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/systemjs@6.14.3/dist/extras/amd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/systemjs@6.14.3/dist/extras/named-exports.min.js"></script>
+
+    <!-- Keep favicon link -->
+    <link rel="icon" href="favicon.ico">
+
+    <script type="systemjs-importmap">
+        {
+            "imports": {
+                "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@6.0.0/lib/system/single-spa.min.js"
+                // Microfrontend apps will be added here
+            }
+        }
+    </script>
+
+    <!-- Webpack bundle (root config) will be loaded via SystemJS -->
+
+</head>
+<body>
+    <!-- Main container for single-spa applications -->
+    <main id="single-spa-application-container"></main>
+
+    <script>
+        // Load the root config using SystemJS
+        System.import('/bundle.js').catch(function (err) {
+            console.error('Error loading root config:', err);
+        });
+    </script>
+</body>
+</html> 

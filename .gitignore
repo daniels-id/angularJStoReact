@@ -1,10 +1,12 @@
 # Ignore node_modules folders in subprojects
 ngreact/node_modules/
 react2angular-app/node_modules/
+singlespa-app/node_modules/
 
 # Ignore build output directories
 ngreact/dist/
 react2angular-app/dist/
+singlespa-app/dist/
 
 # IDE/Editor specific files
 .vscode/
