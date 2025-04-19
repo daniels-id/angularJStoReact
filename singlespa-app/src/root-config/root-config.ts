@@ -6,23 +6,14 @@ declare const System: {
 };
 
 registerApplication(
-  // Name of our application
   "@singlespa-app/angularjs-app",
-  // Our loading function
   () => System.import("@singlespa-app/angularjs-app"),
-  // Our activity function
   (location) => true // Always active
 );
 
-registerApplication(
-  "@singlespa-app/react-app",
-  () => System.import("@singlespa-app/react-app"),
-  (location) => true // Always active
-);
-
-console.log("single-spa root config: Applications registered (always active).");
+console.log("single-spa root config: AngularJS app registered.");
 
 // Start single-spa
 start({
-  urlRerouteOnly: true, // Recommended setting
+  urlRerouteOnly: true,
 }); 

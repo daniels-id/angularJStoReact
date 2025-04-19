@@ -6,7 +6,7 @@ module.exports = {
   entry: {
     'root-config': './src/root-config/root-config.ts',
     'angularjs-app': './src/angularjs-app/main.ts',
-    'react-app': './src/react-app/main.ts',
+    'react-app': './src/react-app/reactParcel.ts',
   },
   output: {
     filename: '[name].js',

@@ -2,9 +2,9 @@ import React from 'react';
 // Import standard ReactDOM
 import ReactDOM from 'react-dom';
 import singleSpaReact from 'single-spa-react';
-import Root from './root.component';
+import Root from './react.component';
 
-const lifecycles = singleSpaReact({
+const reactParcel = singleSpaReact({
   React,
   // Pass standard ReactDOM - using type assertion to bypass build error
   ReactDOM: ReactDOM as any,
@@ -16,4 +16,4 @@ const lifecycles = singleSpaReact({
   },
 });
 
-export const { bootstrap, mount, unmount } = lifecycles; 
+export const { bootstrap, mount, unmount } = reactParcel; 
