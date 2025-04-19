@@ -17,8 +17,14 @@
     <script type="systemjs-importmap">
         {
             "imports": {
-                "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@6.0.0/lib/system/single-spa.min.js"
-                // Microfrontend apps will be added here
+                "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@6.0.0/lib/system/single-spa.min.js",
+                "angular": "https://cdn.jsdelivr.net/npm/angular@1.3.20/angular.min.js",
+                "react": "https://cdn.jsdelivr.net/npm/react@18.3.1/umd/react.production.min.js",
+                "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@18.3.1/umd/react-dom.production.min.js",
+
+                "@singlespa-app/root-config": "/bundle.js", // Path to our root config bundle
+                "@singlespa-app/angularjs-app": "/angularjs-app.js", // Placeholder path - needs build config adjustment
+                "@singlespa-app/react-app": "/react-app.js" // Placeholder path - needs build config adjustment
             }
         }
     </script>
@@ -32,7 +38,7 @@
 
     <script>
         // Load the root config using SystemJS
-        System.import('/bundle.js').catch(function (err) {
+        System.import('@singlespa-app/root-config').catch(function (err) {
             console.error('Error loading root config:', err);
         });
     </script>

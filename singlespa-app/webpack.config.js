@@ -2,9 +2,13 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: './src/root-config/root-config.ts',
+  entry: {
+    'root-config': './src/root-config/root-config.ts',
+    'angularjs-app': './src/angularjs-app/main.ts',
+    'react-app': './src/react-app/main.ts',
+  },
   output: {
-    filename: 'bundle.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
     clean: true,
     libraryTarget: 'system', // Output as SystemJS module
@@ -12,14 +16,14 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.ts$/,
+        test: /\.(ts|tsx)$/, // Handle .ts and .tsx files
         use: 'ts-loader',
         exclude: /node_modules/,
       },
     ],
   },
   resolve: {
-    extensions: ['.ts', '.js'],
+    extensions: ['.ts', '.tsx', '.js'], // Add .tsx
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -37,6 +41,7 @@ module.exports = {
       "Access-Control-Allow-Origin": "*", // Allow CORS for loading microfrontends
     },
   },
-  externals: ['single-spa'], // Exclude single-spa from the bundle, load via import map
+  // Exclude dependencies that will be loaded via SystemJS import map
+  externals: ['single-spa', 'react', 'react-dom', 'angular'], // Adjusted externals slightly
   mode: 'development', 
 }; 
