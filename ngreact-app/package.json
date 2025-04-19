@@ -1,5 +1,5 @@
 {
-  "name": "angularjs-1.3-starter",
+  "name": "ngreact-app",
   "version": "1.0.0",
   "description": "Barebones AngularJS 1.3 starter with TypeScript and Webpack",
   "main": "dist/bundle.js",
