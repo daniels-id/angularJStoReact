@@ -1,0 +1,31 @@
+{
+  "name": "react2angular-app",
+  "version": "1.0.0",
+  "description": "Barebones AngularJS 1.5 starter with TypeScript and Webpack",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack serve --mode development",
+    "build": "webpack --mode production"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/angular": "^1.8.9",
+    "@types/node": "^20.12.7",
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2",
+    "angular": "^1.5.11",
+    "html-webpack-plugin": "^5.6.0",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.4.5",
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.0.4"
+  },
+  "dependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react18-react2angular": "^5.0.3"
+  }
+}
