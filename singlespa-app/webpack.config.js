@@ -12,19 +12,19 @@ module.exports = {
     filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
     clean: true,
-    libraryTarget: 'system', // Output as SystemJS module
+    libraryTarget: 'system',
   },
   module: {
     rules: [
       {
-        test: /\.(ts|tsx)$/, // Handle .ts and .tsx files
+        test: /\.(ts|tsx)$/,
         use: 'ts-loader',
         exclude: /node_modules/,
       },
     ],
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js'], // Add .tsx
+    extensions: ['.ts', '.tsx', '.js'], 
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -34,20 +34,35 @@ module.exports = {
     }),
     new CopyWebpackPlugin({
       patterns: [
-        { from: 'src/favicon.ico', to: 'favicon.ico' }
+        { from: 'src/favicon.ico', to: 'favicon.ico' },
+        { 
+          from: 'node_modules/single-spa-angularjs/lib/parcel.js',
+          to: 'parcel.js' 
+        }
       ]
     })
   ],
   devServer: {
-    static: path.join(__dirname, 'dist'),
+    static: [
+      { directory: path.join(__dirname, 'dist') },
+      { directory: path.join(__dirname, '..') }
+    ],
     compress: true,
     port: 9001,
-    historyApiFallback: true, // Important for single-spa routing
+    historyApiFallback: true, 
     headers: {
-      "Access-Control-Allow-Origin": "*", // Allow CORS for loading microfrontends
+      "Access-Control-Allow-Origin": "*", 
+    },
+    // Force writing files to disk for CopyWebpackPlugin compatibility
+    devMiddleware: {
+      writeToDisk: true,
     },
   },
-  // Exclude dependencies that will be loaded via SystemJS import map
-  externals: ['react', 'react-dom', 'angular'],
+
+  externals: {
+    'react': 'react',
+    'react-dom': 'react-dom',
+    'angular': 'angular' // Tell webpack to find 'angular' via the SystemJS module 'angular'
+  },
   mode: 'development', 
 }; 

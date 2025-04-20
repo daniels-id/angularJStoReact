@@ -6,12 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Single-SPA Root Config</title>
 
-    <!-- Add SystemJS and Import Map -->
+    <script src="https://cdn.jsdelivr.net/npm/angular@1.3.20/angular.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/systemjs@6.14.3/dist/system.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/systemjs@6.14.3/dist/extras/amd.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/systemjs@6.14.3/dist/extras/named-exports.min.js"></script>
 
-    <!-- Keep favicon link -->
     <link rel="icon" href="favicon.ico">
 
     <script type="systemjs-importmap">
@@ -21,6 +18,7 @@
                 "angular": "https://cdn.jsdelivr.net/npm/angular@1.3.20/angular.min.js",
                 "react": "https://cdn.jsdelivr.net/npm/react@18.3.1/umd/react.production.min.js",
                 "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@18.3.1/umd/react-dom.production.min.js",
+                "single-spa-parcel-helper": "/parcel.js",
 
                 "@singlespa-app/root-config": "/root-config.js",
                 "@singlespa-app/angularjs-app": "/angularjs-app.js",
@@ -29,22 +27,23 @@
         }
     </script>
 
-    <!-- Webpack bundles will be loaded via SystemJS -->
 
 </head>
 <body>
-    <!-- Removed Navigation -->
 
     <h1>Single-SPA Container</h1>
 
-    <!-- Main container for the primary single-spa application -->
     <main id="single-spa-application-container"></main>
 
     <script>
-        // Load the root config using SystemJS
-        System.import('@singlespa-app/root-config').catch(function (err) {
-            console.error('Error loading root config:', err);
-        });
+        System.import('single-spa-parcel-helper')
+            .then(function() {
+                console.log('single-spa-parcel-helper loaded successfully.');
+                return System.import('@singlespa-app/root-config');
+            })
+            .catch(function (err) {
+                console.error('Error loading initial scripts:', err);
+            });
     </script>
 </body>
 </html> 
