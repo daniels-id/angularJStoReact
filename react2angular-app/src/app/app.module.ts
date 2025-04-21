@@ -8,7 +8,7 @@ const appModule = angular.module('app', [
 
 const SimpleReactAngularComponent = react2angular(
     SimpleReactComponent,
-    ['name', 'onNameChange']
+    ['name', 'onNameChange', 'onNestedValueChange']
 );
 
 appModule.component('simpleReactAngularComponent', SimpleReactAngularComponent);

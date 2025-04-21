@@ -3,6 +3,7 @@ import * as angular from 'angular';
 class AppController implements angular.IController {
     public bindableName: string;
     public message: string;
+    public nestedValueDisplay: string = '';
 
     constructor(private $scope: angular.IScope) {
         this.message = 'Hello from the Angular Container!';
@@ -19,6 +20,14 @@ class AppController implements angular.IController {
         });
     }
 
+    // Method to handle changes from the nested React component
+    public handleNestedValueChange = (newNestedValue: string) => {
+        this.$scope.$applyAsync(() => {
+            this.nestedValueDisplay = newNestedValue;
+            console.log('[Angular] nestedValueDisplay updated to:', this.nestedValueDisplay);
+        });
+    }
+
     // Dependency Injection
     static $inject = ['$scope'];
 }
@@ -28,12 +37,14 @@ export const appComponent: angular.IComponentOptions = {
         <div>
             <h1>{{$ctrl.message}}</h1>
             <p>Value in Angular Container: <strong>{{$ctrl.bindableName}}</strong></p>
+            <p>Nested Value in Angular Container: <strong>{{$ctrl.nestedValueDisplay}}</strong></p>
             <hr />
             <!-- Use the wrapped React component -->
-            <!-- Pass data down ('name') and the callback up ('onNameChange') -->
+            <!-- Pass data down ('name') and callbacks up ('onNameChange', 'onNestedValueChange') -->
             <simple-react-angular-component 
                 name="$ctrl.bindableName" 
-                on-name-change="$ctrl.handleNameChange">
+                on-name-change="$ctrl.handleNameChange"
+                on-nested-value-change="$ctrl.handleNestedValueChange">
             </simple-react-angular-component>
         </div>
     `,
