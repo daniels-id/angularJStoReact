@@ -28,8 +28,8 @@ appModule.directive('angularjsAppRoot', function() {
     controller: ['$scope', function($scope: any) { 
       console.log('AngularJS App: angularjsAppRoot controller initialized.');
 
-
-      $scope.reactParcelConfig = () => System.import('@singlespa-app/react-app');
+      $scope.reactParcelConfig = () => System.import('@singlespa-app/react-app')
+                                            .then(mod => mod.ReactParcel);
 
       $scope.reactParcelProps = {
         customAppName: 'my-react-parcel'
